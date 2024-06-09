@@ -23,6 +23,8 @@ app.get(`/liveness`,(request, response) => {
     });
 })
 
+
+
 app.get(`/readiness`,(request, response) => {
     return response
     .status(500)
