@@ -1,17 +1,23 @@
 {
-  "name": "atv-4",
+  "name": "clone-atv4",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vandoops/atv4cloudcomputing.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vandoops/atv4cloudcomputing/issues"
+  },
+  "homepage": "https://github.com/vandoops/atv4cloudcomputing#readme",
   "dependencies": {
-    "body-parse": "^0.1.0",
     "body-parser": "^1.20.2",
     "express": "^4.19.2"
   }
