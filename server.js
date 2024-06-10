@@ -1,10 +1,11 @@
-const app =require('./app');
-const http =require('http');
+const express = require('express');
+const app = express();
+const appRoutes = require('./app'); // Corrigido de ./app.js para ./app
 
-const port = 3030;
+const port = 3000;
 
+app.use('/', appRoutes);
 
-const server = http.createServer(app);
-server.listen(port, () => {
-    console.log(`App running on port: ${port}`);
-})
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
+});

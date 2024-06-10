@@ -19,6 +19,7 @@
   "homepage": "https://github.com/vandoops/atv4cloudcomputing#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "mysql2": "^3.10.0"
   }
 }
