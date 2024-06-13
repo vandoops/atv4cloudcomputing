@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const appRoutes = require('./app'); // Corrigido de ./app.js para ./app
+const appRoutes = require('./app'); 
 
 const port = 3000;
 

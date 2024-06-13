@@ -16,7 +16,7 @@ const dbConfig = {
 
 const pool = mysql.createPool(dbConfig);
 
-// Rota principal
+// principal
 app.get('/', (request, response) => {
   return response
     .status(200)
@@ -26,7 +26,7 @@ app.get('/', (request, response) => {
     });
 });
 
-// Rota liveness
+// liveness
 app.get('/liveness', (request, response) => {
   return response
     .status(200)
@@ -47,7 +47,7 @@ app.get('/readiness', (request, response) => {
     });
 });
 
-// Rota de consulta para dados
+// consulta dados
 app.get('/consulta-dados', (request, response) => {
   pool.getConnection((err, connection) => {
     if (err) {
@@ -55,8 +55,7 @@ app.get('/consulta-dados', (request, response) => {
     }
 
     connection.query('SELECT * FROM Pessoas', (error, results) => {
-      connection.release(); // Liberar a conexão, independentemente do resultado da consulta
-
+      connection.release(); 
       if (error) {
         return response.status(500).json({ error: error.message });
       }
