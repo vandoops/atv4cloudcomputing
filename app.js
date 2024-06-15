@@ -16,38 +16,32 @@ const dbConfig = {
 
 const pool = mysql.createPool(dbConfig);
 
-// principal
+
 app.get('/', (request, response) => {
-  return response
-    .status(200)
-    .json({
-      status: true,
-      mensagem: 'OK tudo bem'
-    });
+  return response.status(200).json({
+    status: true,
+    mensagem: 'OK tudo bem'
+  });
 });
 
-// liveness
+
 app.get('/liveness', (request, response) => {
-  return response
-    .status(200)
-    .json({
-      status: true,
-      mensagem: 'OK liveness'
-    });
+  return response.status(200).json({
+    status: true,
+    mensagem: 'OK liveness'
+  });
 });
 
-// Rota readiness
+
 app.get('/readiness', (request, response) => {
-  return response
-    .status(200)
-    .json({
-      status: true,
-      mensagem: 'OK readiness ta tudo ok',
-      os: os.platform()
-    });
+  return response.status(200).json({
+    status: true,
+    mensagem: 'OK readiness ta tudo ok',
+    os: os.platform()
+  });
 });
 
-// consulta dados
+// Rota para consulta de dados da tabela Pessoas
 app.get('/consulta-dados', (request, response) => {
   pool.getConnection((err, connection) => {
     if (err) {
@@ -55,10 +49,32 @@ app.get('/consulta-dados', (request, response) => {
     }
 
     connection.query('SELECT * FROM Pessoas', (error, results) => {
-      connection.release(); 
+      connection.release();
       if (error) {
         return response.status(500).json({ error: error.message });
       }
+      response.json(results);
+    });
+  });
+});
+
+
+app.get('/consulta-produtos', (request, response) => {
+  console.log('Rota /consulta-produtos acessada');
+
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.error('Erro ao obter conexão do pool:', err.message);
+      return response.status(500).json({ error: err.message });
+    }
+
+    connection.query('SELECT * FROM Produtos', (error, results) => {
+      connection.release();
+      if (error) {
+        console.error('Erro na consulta SQL:', error.message);
+        return response.status(500).json({ error: error.message });
+      }
+      console.log('Resultados da consulta:', results);
       response.json(results);
     });
   });
